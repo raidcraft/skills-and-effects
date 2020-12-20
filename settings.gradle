@@ -1,1 +1,7 @@
-rootProject.name = 'raidcraft-plugin-template'
+rootProject.name = 'skills-and-effects'
+
+new File(rootDir, 'modules').listFiles().each {
+    if (it.directory && new File(it, 'build.gradle').exists()) {
+        include "modules:${it.name}"
+    }
+}
