@@ -1,9 +1,9 @@
 package de.raidcraft.skills.skills;
 
 import de.raidcraft.skills.*;
+import de.raidcraft.skills.configmapper.ConfigOption;
 import io.ebean.annotation.Transactional;
 import lombok.NonNull;
-import net.silthus.configmapper.ConfigOption;
 
 import java.time.Instant;
 
