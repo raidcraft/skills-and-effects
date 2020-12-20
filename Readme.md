@@ -8,6 +8,11 @@
 
 Dieses Projekt enthält alle Skills und Effekte die auf [Raid-Craft](https://raid-craft.de) genutzt werden.
 
+Alle Skills befinden sich im [modules](modules) Ordner und haben dort eine Beschreibung ihrer Config Optionen.
+
+## Skill Programmieren
+
 Um einen neuen Skill oder Effekt hinzuzufügen einfach analog der anderen Klassen hinzufügen. Die Klasse wird dann automatisch vom [RCSkills](https://github.com/raidcraft/rcskills) Plugin erkannt.
 
 > **WICHTIG**: Nicht die `@SkillInfo` oder `@EffectInfo` annotation vergessen, sonst kann die Klasse nicht registriert werden.
+> Außerdem muss `@ConfigOption` aus dem `de.raidcraft.skills.configmapper.*` package stammen nicht aus `net.silthus.*`.

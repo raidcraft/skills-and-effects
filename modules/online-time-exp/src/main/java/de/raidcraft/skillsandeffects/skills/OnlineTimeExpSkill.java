@@ -1,4 +1,4 @@
-package de.raidcraft.skills.skills;
+package de.raidcraft.skillsandeffects.skills;
 
 import de.raidcraft.skills.*;
 import de.raidcraft.skills.configmapper.ConfigOption;
