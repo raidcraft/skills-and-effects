@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/raidcraft/skills-and-effects/compare/v1.0.1...v1.1.0) (2020-12-20)
+
+
+### Features
+
+* add new movement-speed skill ([6a8e363](https://github.com/raidcraft/skills-and-effects/commit/6a8e363f2680e41d5b3682c2871a5c77ecd3db36))
+
 ## [1.0.1](https://github.com/raidcraft/skills-and-effects/compare/v1.0.0...v1.0.1) (2020-12-20)
 
 
