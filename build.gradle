@@ -20,6 +20,9 @@ repositories {
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
+sourceCompatibility = 11
+targetCompatibility = 11
+
 configure (subprojects - project(':modules')) {
 
     apply plugin: 'java'
@@ -64,12 +67,9 @@ configure (subprojects - project(':modules')) {
     dependencies {
         implementation "org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT"
 
-        implementation 'de.raidcraft:rcskills:1.1.1'
+        implementation 'de.raidcraft:rcskills:1.4.1'
 
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-        testImplementation "org.mockito:mockito-core:3.+"
-        testImplementation 'org.assertj:assertj-core:3.+'
-        testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:0.16.0'
+        testImplementation 'de.raidcraft:rcskills-test:1.0.0'
     }
 
     test {
@@ -95,12 +95,15 @@ new File(rootDir, 'modules').listFiles().each {
     }
 }
 
+apply from: "$rootDir/gradle/publish.gradle"
+
 task oneJar( type: Jar , dependsOn: projects.collect{ it+":compileJava"}) {
     baseName = "skills-and-effects"
     from files(projects.collect{ project(it).sourceSets.main.output })
 }
 
 tasks.build.dependsOn(oneJar)
+tasks.publish.dependsOn(oneJar)
 
 if (project.hasProperty("local_script")) {
     apply from: file(local_script + "/build.local.gradle")
