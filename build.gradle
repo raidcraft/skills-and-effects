@@ -98,7 +98,7 @@ new File(rootDir, 'modules').listFiles().each {
 apply from: "$rootDir/gradle/publish.gradle"
 
 task oneJar( type: Jar , dependsOn: projects.collect{ it+":compileJava"}) {
-    baseName = "skills-and-effects"
+    baseName = "all-skills-and-effects"
     from files(projects.collect{ project(it).sourceSets.main.output })
 }
 
