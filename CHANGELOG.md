@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/raidcraft/skills-and-effects/compare/v1.1.0...v1.1.1) (2020-12-23)
+
+
+### Bug Fixes
+
+* **deps:** update rcskills to 1.7.2 ([292f9a3](https://github.com/raidcraft/skills-and-effects/commit/292f9a34b5e5505ecf7b8662c56bcbdecbdf1278))
+
 # [1.1.0](https://github.com/raidcraft/skills-and-effects/compare/v1.0.1...v1.1.0) (2020-12-20)
 
 
