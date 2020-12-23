@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/raidcraft/skills-and-effects/compare/v1.1.1...v1.1.2) (2020-12-23)
+
+
+### Bug Fixes
+
+* **build:** publish all skills as one jar ([7b53afb](https://github.com/raidcraft/skills-and-effects/commit/7b53afbeb9375085358a071be5ceaec0e056484d))
+
 ## [1.1.1](https://github.com/raidcraft/skills-and-effects/compare/v1.1.0...v1.1.1) (2020-12-23)
 
 
