@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/raidcraft/skills-and-effects/compare/v1.1.2...v1.1.3) (2020-12-24)
+
+
+### Bug Fixes
+
+* **online-time:** do not drop extra payout time ([737d9df](https://github.com/raidcraft/skills-and-effects/commit/737d9df22ca190b825dbc1b2b771eacd0f6b8f52))
+
 ## [1.1.2](https://github.com/raidcraft/skills-and-effects/compare/v1.1.1...v1.1.2) (2020-12-23)
 
 
