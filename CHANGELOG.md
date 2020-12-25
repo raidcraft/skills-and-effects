@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/raidcraft/skills-and-effects/compare/v1.1.3...v1.2.0) (2020-12-25)
+
+
+### Bug Fixes
+
+* make mcmmo-exp depend on mcMMO plugin ([d593b46](https://github.com/raidcraft/skills-and-effects/commit/d593b46aee54c40f40d5890dfcd9a4da8a899b64))
+
+
+### Features
+
+* **online-time:** add essentials afk tracker to online time skill ([e87e680](https://github.com/raidcraft/skills-and-effects/commit/e87e680278f7b514d610b8f29438e70b5405b0aa))
+* add new mcmmo exp gain skill ([8d0676a](https://github.com/raidcraft/skills-and-effects/commit/8d0676af31689ec32e12d0d384b30d3ddffb0476))
+
 ## [1.1.3](https://github.com/raidcraft/skills-and-effects/compare/v1.1.2...v1.1.3) (2020-12-24)
 
 
