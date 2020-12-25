@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@SkillInfo("mcmmo-exp")
+@SkillInfo(value = "mcmmo-exp", depends = {"mcMMO"})
 public class McmmoExp extends AbstractSkill implements Listener {
 
     private static final String LAST_HOUR_START = "last-hour-start";
