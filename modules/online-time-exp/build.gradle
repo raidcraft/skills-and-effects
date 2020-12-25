@@ -1,0 +1,14 @@
+repositories {
+    maven {
+        name "essentialsx"
+        url "https://ci.ender.zone/plugin/repository/everything/"
+    }
+    maven {
+        name "papermc"
+        url "https://papermc.io/repo/repository/maven-public/"
+    }
+}
+
+dependencies {
+    implementation 'net.ess3:EssentialsX:2.17.2'
+}

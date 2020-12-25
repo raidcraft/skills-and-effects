@@ -1,10 +1,15 @@
 package de.raidcraft.skillsandeffects.skills;
 
+import com.earth2me.essentials.Essentials;
+import com.earth2me.essentials.User;
 import de.raidcraft.skills.*;
 import de.raidcraft.skills.configmapper.ConfigOption;
 import io.ebean.annotation.Transactional;
 import lombok.NonNull;
 import lombok.Value;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.plugin.Plugin;
 
 import java.time.Instant;
 
@@ -25,9 +30,9 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
 
     }
 
-    private static final String STORAGE_KEY_ONLINE_TIME = "online-time";
-    private static final String STORAGE_KEY_LAST_ONLINE = "last-online";
-    private static final String STORAGE_KEY_LAST_PAYOUT = "last-payout";
+    static final String STORAGE_KEY_ONLINE_TIME = "online-time";
+    static final String STORAGE_KEY_LAST_ONLINE = "last-online";
+    static final String STORAGE_KEY_LAST_PAYOUT = "last-payout";
 
     @ConfigOption(
             description = {
@@ -46,11 +51,22 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
     private String reason = "EXP für Onlinezeit";
 
     Instant onlineSince;
+    Instant afkSince;
     long onlineTime;
     long lastPayOut;
+    Essentials essentials;
 
     OnlineTimeExpSkill(SkillContext context) {
         super(context);
+    }
+
+    @Override
+    public void load(ConfigurationSection config) {
+
+        Plugin essentials = Bukkit.getPluginManager().getPlugin("Essentials");
+        if (essentials != null) {
+            this.essentials = (Essentials) essentials;
+        }
     }
 
     @Override
@@ -76,6 +92,16 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
     @Transactional
     public void tick() {
 
+        if (essentials != null) {
+            User user = essentials.getUser(context().skilledPlayer().id());
+            if (user.isAfk() && afkSince == null) {
+                afkSince = Instant.ofEpochMilli(user.getAfkSince());
+            } else if (!user.isAfk() && afkSince != null) {
+                onlineTime -= afkSince.getEpochSecond();
+                afkSince = null;
+            }
+        }
+
         updateOnlineTime();
         Result payout = calcLastPayout(this);
         if (payout.count > 0) {
@@ -87,14 +113,18 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
     private void setLastPayout(long time) {
 
         lastPayOut = time;
-        context().store().set(STORAGE_KEY_LAST_PAYOUT, time).save();
     }
 
     private void updateOnlineTime() {
 
-        onlineTime += Instant.now().getEpochSecond() - onlineSince.getEpochSecond();
-        onlineSince = Instant.now();
-        context().store().set(STORAGE_KEY_ONLINE_TIME, onlineTime).save();
+        Instant now = Instant.now();
+        if (afkSince != null) {
+            onlineTime -= now.getEpochSecond() - afkSince.getEpochSecond();
+            afkSince = now;
+        }
+
+        onlineTime += now.getEpochSecond() - onlineSince.getEpochSecond();
+        onlineSince = now;
     }
 
     static Result calcLastPayout(OnlineTimeExpSkill skill) {
