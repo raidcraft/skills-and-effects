@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/raidcraft/skills-and-effects/compare/v1.2.0...v1.2.1) (2021-01-01)
+
+
+### Bug Fixes
+
+* store online and afk time seperately ([5c989f5](https://github.com/raidcraft/skills-and-effects/commit/5c989f522a4dd876cb429f55e798c6310fb636e3)), closes [#48](https://github.com/raidcraft/skills-and-effects/issues/48)
+
 # [1.2.0](https://github.com/raidcraft/skills-and-effects/compare/v1.1.3...v1.2.0) (2020-12-25)
 
 
