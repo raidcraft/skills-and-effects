@@ -5,11 +5,15 @@ import com.earth2me.essentials.User;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.entities.DataStore;
 import de.raidcraft.skills.entities.SkilledPlayer;
+import mockit.Mock;
+import mockit.MockUp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.Clock;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
@@ -144,6 +148,33 @@ class OnlineTimeExpSkillTest {
 
         skill.tick();
 
+        assertResult(10, 10);
+        assertExp(10);
+    }
+
+    @Test
+    @DisplayName("should update afk status when player is back")
+    void shouldUpdateAfkStatusWhenPlayerIsBack() {
+
+        setup(10);
+        when(user.isAfk()).thenReturn(true);
+        when(user.getAfkSince()).thenReturn(Instant.now().toEpochMilli());
+
+        skill.tick();
+
+        when(user.isAfk()).thenReturn(false);
+
+        Clock clock = Clock.fixed(Instant.now().plus(40, ChronoUnit.SECONDS), ZoneOffset.UTC);
+        new MockUp<Instant>() {
+            @Mock
+            public Instant now() {
+                return Instant.now(clock);
+            }
+        };
+
+        skill.tick();
+
+        assertThat(skill.onlineTime - skill.afkTime).isEqualTo(10);
         assertResult(10, 10);
         assertExp(10);
     }

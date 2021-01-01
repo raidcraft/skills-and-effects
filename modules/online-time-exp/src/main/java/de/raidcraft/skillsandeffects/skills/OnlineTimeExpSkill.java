@@ -31,6 +31,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
     }
 
     static final String STORAGE_KEY_ONLINE_TIME = "online-time";
+    static final String STORAGE_KEY_AFK_TIME = "afk-time";
     static final String STORAGE_KEY_LAST_ONLINE = "last-online";
     static final String STORAGE_KEY_LAST_PAYOUT = "last-payout";
 
@@ -53,6 +54,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
     Instant onlineSince;
     Instant afkSince;
     long onlineTime;
+    long afkTime;
     long lastPayOut;
     Essentials essentials;
 
@@ -75,6 +77,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
         onlineSince = Instant.now();
         lastPayOut = context().store().get(STORAGE_KEY_LAST_PAYOUT, long.class, 0L);
         onlineTime = context().store().get(STORAGE_KEY_ONLINE_TIME, long.class, 0L);
+        afkTime = context().store().get(STORAGE_KEY_AFK_TIME, long.class, 0L);
     }
 
     @Override
@@ -85,6 +88,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
                 .set(STORAGE_KEY_ONLINE_TIME, onlineTime)
                 .set(STORAGE_KEY_LAST_ONLINE, Instant.now())
                 .set(STORAGE_KEY_LAST_PAYOUT, lastPayOut)
+                .set(STORAGE_KEY_AFK_TIME, afkTime)
                 .save();
     }
 
@@ -97,7 +101,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
             if (user.isAfk() && afkSince == null) {
                 afkSince = Instant.ofEpochMilli(user.getAfkSince());
             } else if (!user.isAfk() && afkSince != null) {
-                onlineTime -= afkSince.getEpochSecond();
+                afkTime += Instant.now().getEpochSecond() - afkSince.getEpochSecond();
                 afkSince = null;
             }
         }
@@ -119,7 +123,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
 
         Instant now = Instant.now();
         if (afkSince != null) {
-            onlineTime -= now.getEpochSecond() - afkSince.getEpochSecond();
+            afkTime += now.getEpochSecond() - afkSince.getEpochSecond();
             afkSince = now;
         }
 
@@ -129,14 +133,15 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
 
     static Result calcLastPayout(OnlineTimeExpSkill skill) {
 
-        if (skill.lastPayOut == 0 && skill.onlineTime < skill.interval) {
+        long onlineTime = skill.onlineTime - skill.afkTime;
+        if (skill.lastPayOut == 0 && onlineTime < skill.interval) {
             return new Result(0, 0, 0);
         }
 
-        long onlineTimeSince = skill.onlineTime - skill.lastPayOut;
+        long onlineTimeSince = onlineTime - skill.lastPayOut;
         long count = (onlineTimeSince / skill.interval);
         long rest = onlineTimeSince % skill.interval;
-        return new Result(count, skill.exp * count, skill.onlineTime - rest);
+        return new Result(count, skill.exp * count, onlineTime - rest);
     }
 
     @Value
