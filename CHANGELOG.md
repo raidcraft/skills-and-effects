@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/raidcraft/skills-and-effects/compare/v1.2.1...v1.3.0) (2021-01-02)
+
+
+### Bug Fixes
+
+* **look-teleport:** play sound and effect by default ([30627e3](https://github.com/raidcraft/skills-and-effects/commit/30627e30ea381280c129b5bee13120f62b91e7f2))
+
+
+### Features
+
+* add look-teleport skill ([b455cec](https://github.com/raidcraft/skills-and-effects/commit/b455cecb6ad17d44eb28c947271179ba430db030))
+* add server-shop-exp skill ([73f683d](https://github.com/raidcraft/skills-and-effects/commit/73f683d080f60629ca91dfe074770e72acbb22b9))
+
 ## [1.2.1](https://github.com/raidcraft/skills-and-effects/compare/v1.2.0...v1.2.1) (2021-01-01)
 
 
