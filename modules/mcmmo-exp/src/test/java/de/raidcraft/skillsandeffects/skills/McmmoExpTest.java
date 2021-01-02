@@ -122,7 +122,9 @@ class McmmoExpTest {
 
         assertExp(50);
 
-        skill.lastHourStart = Instant.now().minus(1, ChronoUnit.HOURS);
+        skill.lastHourStart = Instant.now()
+                .minus(1, ChronoUnit.HOURS)
+                .minus(1, ChronoUnit.MINUTES);
 
         skill.onMcmmoExpGain(event(10));
 
