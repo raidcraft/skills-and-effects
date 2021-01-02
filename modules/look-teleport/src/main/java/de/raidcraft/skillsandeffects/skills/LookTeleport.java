@@ -36,12 +36,12 @@ public class LookTeleport extends AbstractSkill implements Executable {
     }
 
     @ConfigOption
-    boolean playSound;
+    boolean playSound = true;
     @ConfigOption
     String sound = Sound.ENTITY_ENDERMAN_TELEPORT.name();
     private Sound soundEffect = Sound.ENTITY_ENDERMAN_TELEPORT;
     @ConfigOption
-    boolean playEffect;
+    boolean playEffect = true;
     Effect effectEffect = Effect.PORTAL_TRAVEL;
     @ConfigOption
     String effect = Effect.PORTAL_TRAVEL.name();
