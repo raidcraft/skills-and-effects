@@ -178,4 +178,46 @@ class OnlineTimeExpSkillTest {
         assertResult(10, 10);
         assertExp(10);
     }
+
+    @Test
+    @DisplayName("should allow gathering exp after afk status ended")
+    void shouldAddExpAfterAfkEnded() {
+
+        setup(10);
+        when(user.isAfk()).thenReturn(true);
+        Instant start = Instant.now();
+        when(user.getAfkSince()).thenReturn(start.toEpochMilli());
+
+        skill.tick();
+
+        when(user.isAfk()).thenReturn(false);
+
+        Clock clock = Clock.fixed(start.plus(40, ChronoUnit.SECONDS), ZoneOffset.UTC);
+        new MockUp<Instant>() {
+            @Mock
+            public Instant now() {
+                return Instant.now(clock);
+            }
+        };
+
+        skill.tick();
+
+        assertThat(skill.onlineTime - skill.afkTime).isEqualTo(10);
+        assertResult(10, 10);
+        assertExp(10);
+
+        Clock secondClock = Clock.fixed(start.plus(60, ChronoUnit.SECONDS), ZoneOffset.UTC);
+        new MockUp<Instant>() {
+            @Mock
+            public Instant now() {
+                return Instant.now(secondClock);
+            }
+        };
+
+        skill.tick();
+
+        assertThat(skill.afkTime).isEqualTo(40);
+        assertResult(30, 30);
+        assertExp(30);
+    }
 }
