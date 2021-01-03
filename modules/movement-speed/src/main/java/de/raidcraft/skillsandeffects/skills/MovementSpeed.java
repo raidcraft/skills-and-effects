@@ -43,6 +43,7 @@ public class MovementSpeed extends AbstractSkill implements Listener {
     private Location lastLocation;
     private State state;
     private State oldState;
+    private boolean applied;
 
     private final List<State> states = new ArrayList<>();
 
@@ -118,14 +119,20 @@ public class MovementSpeed extends AbstractSkill implements Listener {
 
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         if (attribute == null) return;
-        attribute.addModifier(attributeModifier);
+        if (!applied) {
+            attribute.addModifier(attributeModifier);
+            applied = true;
+        }
     }
 
     private void removeSpeed(Player player) {
 
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         if (attribute == null) return;
-        attribute.removeModifier(attributeModifier);
+        if (applied) {
+            attribute.removeModifier(attributeModifier);
+            applied = false;
+        }
     }
 
     private boolean stateChanged() {
