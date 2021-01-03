@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/raidcraft/skills-and-effects/compare/v1.3.0...v1.4.0) (2021-01-03)
+
+
+### Features
+
+* **movement-speed:** add attribute modifier instead of modifying base value ([017df3f](https://github.com/raidcraft/skills-and-effects/commit/017df3f8c8d25dda3a0fecd914c0ecc844111fd6))
+
 # [1.3.0](https://github.com/raidcraft/skills-and-effects/compare/v1.2.1...v1.3.0) (2021-01-02)
 
 
