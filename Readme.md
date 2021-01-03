@@ -10,6 +10,14 @@ Dieses Projekt enthält alle Skills und Effekte die auf [Raid-Craft](https://rai
 
 Alle Skills befinden sich im [modules](modules) Ordner und haben dort eine Beschreibung ihrer Config Optionen.
 
+## Liste der Skills
+
+- [look-teleport](modules/look-teleport): *Teleportiert den Spieler zu dem Block den er anschaut.*
+- [mcmmo-exp](modules/mcmmo-exp): *Gibt RC-EXP für jede erhaltene mcMMO EXP.*
+- [movement-speed](modules/movement-speed): *Erhöht den movement speed des Spielers auf Land, in der Luft oder im Wasser.*
+- [online-time-exp](modules/online-time-exp): *Gibt dem Spieler RC-EXP für die Zeit die er aktiv spielt.*
+- [server-shop-exp](modules/server-shop-exp): *Der Spieler erhält EXP für Gegenstände die er an den Server Shop verkauft.*
+
 ## Skill Programmieren
 
 Um einen neuen Skill oder Effekt hinzuzufügen einfach analog der anderen Klassen hinzufügen. Die Klasse wird dann automatisch vom [RCSkills](https://github.com/raidcraft/rcskills) Plugin erkannt.
