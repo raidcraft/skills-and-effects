@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/raidcraft/skills-and-effects/compare/v1.4.0...v1.4.1) (2021-01-03)
+
+
+### Bug Fixes
+
+* **movement-speed:** do not apply attribute modifier when already applied ([a62d285](https://github.com/raidcraft/skills-and-effects/commit/a62d285480f0b832f574afda52c87e9905a7812e))
+
 # [1.4.0](https://github.com/raidcraft/skills-and-effects/compare/v1.3.0...v1.4.0) (2021-01-03)
 
 
