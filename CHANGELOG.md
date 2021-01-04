@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/raidcraft/skills-and-effects/compare/v1.4.2...v1.5.0) (2021-01-04)
+
+
+### Bug Fixes
+
+* **FriendlyMobs:** Rename test class ([9151a44](https://github.com/raidcraft/skills-and-effects/commit/9151a44858cee388eed0c3949026e0536e963095))
+
+
+### Features
+
+* **FriendlyMobs:** Add new skill type 'FriendlyMobs' to support new Skills like 'Piglins-Friend' ([a1e9476](https://github.com/raidcraft/skills-and-effects/commit/a1e94764416acc567995d9e5f0f5e7475f262a79))
+* **piglings-friend:** Add base implementation of new skill piglings-friend. ([d3d1750](https://github.com/raidcraft/skills-and-effects/commit/d3d1750f70b91bbe0541592d78a6e55c5dadfb04))
+
 ## [1.4.2](https://github.com/raidcraft/skills-and-effects/compare/v1.4.1...v1.4.2) (2021-01-04)
 
 
