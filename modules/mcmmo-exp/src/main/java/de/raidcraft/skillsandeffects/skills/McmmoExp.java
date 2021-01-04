@@ -12,14 +12,10 @@ import lombok.NonNull;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.checkerframework.checker.units.qual.min;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @SkillInfo(value = "mcmmo-exp", depends = {"mcMMO"})
@@ -105,6 +101,8 @@ public class McmmoExp extends AbstractSkill implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onMcmmoExpGain(McMMOPlayerXpGainEvent event) {
+
+        if (context().notApplicable(event.getPlayer())) return;
 
         if (event.getXpGainReason() != null && !reasons.contains(event.getXpGainReason().name().toLowerCase())) {
             return;
