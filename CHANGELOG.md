@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/raidcraft/skills-and-effects/compare/v1.4.1...v1.4.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* check player if player is applicable before using event ([10d1d06](https://github.com/raidcraft/skills-and-effects/commit/10d1d0656c3e8190abdb1a76eebfba25172eacc7))
+
 ## [1.4.1](https://github.com/raidcraft/skills-and-effects/compare/v1.4.0...v1.4.1) (2021-01-03)
 
 
