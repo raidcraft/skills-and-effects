@@ -5,15 +5,11 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import de.raidcraft.skills.ExecutionConfig;
 import de.raidcraft.skills.ExecutionContext;
-import de.raidcraft.skills.ExecutionResult;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.entities.SkilledPlayer;
-import org.bukkit.Location;
 import org.bukkit.configuration.MemoryConfiguration;
-import org.bukkit.entity.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
@@ -24,7 +20,7 @@ import static org.mockito.Mockito.when;
 class LookTeleportTest {
 
     private ServerMock server;
-    private PiglingsFriend skill;
+    private FriendlyMobs skill;
     private PlayerMock player;
     private SkilledPlayer skilledPlayer;
 
@@ -53,7 +49,7 @@ class LookTeleportTest {
 
         skilledPlayer = mock(SkilledPlayer.class);
 
-        skill = new PiglingsFriend(mockContext());
+        skill = new FriendlyMobs(mockContext());
     }
 
     @AfterEach
