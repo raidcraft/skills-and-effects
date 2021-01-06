@@ -1,6 +1,6 @@
 package de.raidcraft.skillsandeffects.skills;
 
-import de.raidcraft.servershop.SellItemEvent;
+import de.raidcraft.servershop.SoldtemsEvent;
 import de.raidcraft.skills.AbstractSkill;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
@@ -63,7 +63,9 @@ public class ServerShopExp extends AbstractSkill implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
-    public void onServerShopSell(SellItemEvent event) {
+    public void onServerShopSell(SoldtemsEvent event) {
+
+        if (context().notApplicable(event.getPlayer())) return;
 
         long exp = itemExpMap.getOrDefault(event.getItem(), 0L);
         exp = Math.round((exp * event.getAmount()) * factor);
