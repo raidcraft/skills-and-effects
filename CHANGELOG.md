@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/raidcraft/skills-and-effects/compare/v1.5.1...v1.5.2) (2021-01-06)
+
+
+### Bug Fixes
+
+* **server-shop-exp:** filter out player before checking event ([8d17fad](https://github.com/raidcraft/skills-and-effects/commit/8d17fad2ba10cd2aaf8bb505b6247c314bba58d1))
+
 ## [1.5.1](https://github.com/raidcraft/skills-and-effects/compare/v1.5.0...v1.5.1) (2021-01-06)
 
 
