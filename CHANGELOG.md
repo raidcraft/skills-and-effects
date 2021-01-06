@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/raidcraft/skills-and-effects/compare/v1.5.0...v1.5.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* **mcmmo-exp:** store timestamp as epoch in milliseconds ([155b607](https://github.com/raidcraft/skills-and-effects/commit/155b6075fc6597094275eee258c68fe3bb50c33f))
+* @ConfigOption for Set does not work ([bdb16f9](https://github.com/raidcraft/skills-and-effects/commit/bdb16f9990347ce09fd86feda06ee886f8a1142a))
+
 # [1.5.0](https://github.com/raidcraft/skills-and-effects/compare/v1.4.2...v1.5.0) (2021-01-04)
 
 
