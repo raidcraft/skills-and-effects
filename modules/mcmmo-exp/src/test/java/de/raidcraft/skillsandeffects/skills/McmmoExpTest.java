@@ -1,7 +1,5 @@
 package de.raidcraft.skillsandeffects.skills;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.ServerMock;
 import com.gmail.nossr50.datatypes.experience.XPGainReason;
 import com.gmail.nossr50.datatypes.skills.PrimarySkillType;
 import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
@@ -23,8 +21,8 @@ class McmmoExpTest {
     private McmmoExp skill;
     private DataStore store;
     private SkilledPlayer player;
-    private PrimarySkillType skillType = null;
-    private XPGainReason reason = XPGainReason.UNKNOWN;
+    private final PrimarySkillType skillType = null;
+    private final XPGainReason reason = XPGainReason.UNKNOWN;
     private long exp;
 
     @BeforeEach
@@ -32,12 +30,13 @@ class McmmoExpTest {
 
         SkillContext context = mock(SkillContext.class);
         skill = new McmmoExp(context);
-        skill.reasons.add(XPGainReason.UNKNOWN.name().toLowerCase());
+        skill.reasons.add(XPGainReason.UNKNOWN);
         store = new DataStore();
         player = mock(SkilledPlayer.class);
         when(context.store()).thenReturn(store);
         when(context.skilledPlayer()).thenReturn(player);
         when(player.addExp(anyLong(), anyString())).then(invocation -> {
+            //noinspection RedundantCast
             exp += (long) invocation.getArgument(0);
             return invocation.getMock();
         });

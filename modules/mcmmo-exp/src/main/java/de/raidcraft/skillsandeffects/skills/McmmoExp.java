@@ -9,15 +9,18 @@ import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
 import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
+import lombok.extern.java.Log;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+@Log(topic = "RCSkills:mmcmmo-exp")
 @SkillInfo(value = "mcmmo-exp", depends = {"mcMMO"})
 public class McmmoExp extends AbstractSkill implements Listener {
 
@@ -51,10 +54,8 @@ public class McmmoExp extends AbstractSkill implements Listener {
     int max = -1;
     @ConfigOption
     int maxPerHour = -1;
-    @ConfigOption
-    Set<String> reasons = new HashSet<>();
-    @ConfigOption
-    Set<String> skills = new HashSet<>();
+    Set<XPGainReason> reasons = new HashSet<>();
+    Set<PrimarySkillType> skills = new HashSet<>();
     Instant lastHourStart = Instant.now();
     float lastHourMcmmoExp;
     float totalMcmmoExp;
@@ -68,12 +69,30 @@ public class McmmoExp extends AbstractSkill implements Listener {
     @Override
     public void load(ConfigurationSection config) {
 
-        for (XPGainReason value : XPGainReason.values()) {
-            reasons.add(value.name().toLowerCase());
+        if (config.isSet("reasons")) {
+            for (String key : config.getStringList("reasons")) {
+                XPGainReason reason = XPGainReason.getXPGainReason(key);
+                if (reason != null) {
+                    reasons.add(reason);
+                } else {
+                    log.warning("invalid mcMMO EXP gain reason " + key + " in skill config of " + context().configuredSkill().alias());
+                }
+            }
+        } else {
+            reasons.addAll(Arrays.asList(XPGainReason.values()));
         }
 
-        for (PrimarySkillType value : PrimarySkillType.values()) {
-            skills.add(value.name().toLowerCase());
+        if (config.isSet("skills")) {
+            for (String key : config.getStringList("skills")) {
+                PrimarySkillType skill = PrimarySkillType.getSkill(key);
+                if (skill != null) {
+                    skills.add(skill);
+                } else {
+                    log.warning("invalid mcMMO skill " + key + " in skill config of " + context().configuredSkill().alias());
+                }
+            }
+        } else {
+            skills.addAll(Arrays.asList(PrimarySkillType.values()));
         }
     }
 
@@ -104,11 +123,11 @@ public class McmmoExp extends AbstractSkill implements Listener {
 
         if (context().notApplicable(event.getPlayer())) return;
 
-        if (event.getXpGainReason() != null && !reasons.contains(event.getXpGainReason().name().toLowerCase())) {
+        if (event.getXpGainReason() != null && !reasons.contains(event.getXpGainReason())) {
             return;
         }
 
-        if (event.getSkill() != null && !skills.contains(event.getSkill().name().toLowerCase())) {
+        if (event.getSkill() != null && !skills.contains(event.getSkill())) {
             return;
         }
 
