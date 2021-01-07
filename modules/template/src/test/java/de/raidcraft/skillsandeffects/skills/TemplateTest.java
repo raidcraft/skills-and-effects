@@ -3,12 +3,14 @@ package de.raidcraft.skillsandeffects.skills;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.entities.DataStore;
 import de.raidcraft.skills.entities.SkilledPlayer;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,6 +41,8 @@ class TemplateTest {
         SkillContext context = mock(SkillContext.class);
         when(context.skilledPlayer()).thenReturn(player);
         when(context.store()).thenReturn(store);
+        when(context.applicable(any())).thenAnswer(invocation -> playerId.equals(((OfflinePlayer) invocation.getArgument(0)).getUniqueId()));
+        when(context.notApplicable(any())).thenAnswer(invocation -> !playerId.equals(((OfflinePlayer) invocation.getArgument(0)).getUniqueId()));
 
         return context;
     }
@@ -50,4 +54,10 @@ class TemplateTest {
         return mock;
     }
 
+    private Player randomPlayer() {
+
+        Player mock = mock(Player.class);
+        when(mock.getUniqueId()).thenReturn(UUID.randomUUID());
+        return mock;
+    }
 }
