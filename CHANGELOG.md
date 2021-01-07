@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/raidcraft/skills-and-effects/compare/v1.6.0...v1.7.0) (2021-01-07)
+
+
+### Features
+
+* **max-health:** implement max health skill ([92ef653](https://github.com/raidcraft/skills-and-effects/commit/92ef653f0811912330c93b6190fd0cbcd5cd9895))
+
 # [1.6.0](https://github.com/raidcraft/skills-and-effects/compare/v1.5.3...v1.6.0) (2021-01-07)
 
 
