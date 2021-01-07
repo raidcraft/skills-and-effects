@@ -19,6 +19,7 @@ Alle Skills befinden sich im [modules](modules) Ordner und haben dort eine Besch
 - [server-shop-exp](modules/server-shop-exp): *Der Spieler erhält EXP für Gegenstände die er an den Server Shop verkauft.*
 - [friendly-mobs](modules/friendly-mobs): *Feindliche Mobs greifen den Spieler nicht mehr grundlos an*
 - [mc-exp-boost](modules/mc-exp-boost): *Erhöht die erhaltenen Minecraft EXP des Spielers.*
+- [exhaustion](modules/exhaustion): *Verringert oder erhöht den Hunger Verlust des Spielers.*
 
 ## Skill Development
 
