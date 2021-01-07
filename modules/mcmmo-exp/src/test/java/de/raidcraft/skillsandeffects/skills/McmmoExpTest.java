@@ -141,4 +141,23 @@ class McmmoExpTest {
 
         assertExp(30);
     }
+
+    @Test
+    void shouldPayoutAfterTreshholdIsReached() {
+
+        skill.factor = 0.1f;
+        skill.payoutTreshhold = 10;
+
+        skill.onMcmmoExpGain(event(10));
+
+        assertExp(0);
+        assertThat(skill.exp).isEqualTo(1f);
+
+        for (int i = 0; i < 10; i++) {
+            skill.onMcmmoExpGain(event(10));
+        }
+
+        assertExp(10);
+        assertThat(skill.exp).isEqualTo(1f);
+    }
 }

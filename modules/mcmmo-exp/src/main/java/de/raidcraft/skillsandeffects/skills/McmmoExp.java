@@ -54,13 +54,16 @@ public class McmmoExp extends AbstractSkill implements Listener {
     int max = -1;
     @ConfigOption
     int maxPerHour = -1;
+    @ConfigOption
+    long payoutTreshhold = 0;
     Set<XPGainReason> reasons = new HashSet<>();
     Set<PrimarySkillType> skills = new HashSet<>();
     Instant lastHourStart = Instant.now();
     float lastHourMcmmoExp;
     float totalMcmmoExp;
-    long totalGainedExp;
-    long lastHourGainedExp;
+    float totalGainedExp;
+    float lastHourGainedExp;
+    float exp;
 
     McmmoExp(SkillContext context) {
         super(context);
@@ -100,8 +103,8 @@ public class McmmoExp extends AbstractSkill implements Listener {
     public void apply() {
 
         lastHourStart = Instant.ofEpochMilli(context().store().get(LAST_HOUR_START, long.class, Instant.now().toEpochMilli()));
-        totalGainedExp = context().store().get(TOTAL_EXP_GAIN, long.class, 0L);
-        lastHourGainedExp = context().store().get(LAST_HOUR_EXP_GAIN, long.class, 0L);
+        totalGainedExp = context().store().get(TOTAL_EXP_GAIN, float.class, 0f);
+        lastHourGainedExp = context().store().get(LAST_HOUR_EXP_GAIN, float.class, 0f);
         lastHourMcmmoExp = context().store().get(LAST_HOUR_MCMMO_EXP_GAIN, float.class, 0f);
         totalMcmmoExp = context().store().get(TOTAL_MCMMO_EXP, float.class, 0f);
     }
@@ -143,16 +146,17 @@ public class McmmoExp extends AbstractSkill implements Listener {
         totalMcmmoExp += mcmmoExp;
         lastHourMcmmoExp += mcmmoExp;
 
-        long exp = calculateExpGain(mcmmoExp);
-        if (exp > 0) {
+        exp += calculateExpGain(mcmmoExp);
+        if (exp >= payoutTreshhold) {
             totalGainedExp += exp;
             lastHourGainedExp += exp;
             context().skilledPlayer()
-                    .addExp(exp, reason + " (" + event.getXpGainReason().name().toLowerCase() + ")");
+                    .addExp(Math.round(exp), reason + " (" + event.getXpGainReason().name().toLowerCase() + ")");
+            exp = 0f;
         }
     }
 
-    long calculateExpGain(float mcMmoExp) {
+    float calculateExpGain(float mcMmoExp) {
 
         long exp = base;
         exp += mcMmoExp * factor;
