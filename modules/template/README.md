@@ -14,3 +14,5 @@ Use this template skill to quickstart the development of new skills. Add the con
 4. (optional) implement listener if you require any bukkit events
 5. (optional) implement Executable if your skill can be actively executed by the player
 6. (recommended) add unit tests to test the logic of your skill
+
+> **IMPORTANT**: always use the `de.raidcraft.skills.configmapper` package for the `@ConfigOption` or else your config will not be loaded.
