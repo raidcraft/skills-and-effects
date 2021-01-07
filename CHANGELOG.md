@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/raidcraft/skills-and-effects/compare/v1.7.0...v1.8.0) (2021-01-07)
+
+
+### Features
+
+* implement exhaustion skill ([e78a6a6](https://github.com/raidcraft/skills-and-effects/commit/e78a6a6717cd5d26424bfd8bc68572a403a26b3e))
+
 # [1.7.0](https://github.com/raidcraft/skills-and-effects/compare/v1.6.0...v1.7.0) (2021-01-07)
 
 
