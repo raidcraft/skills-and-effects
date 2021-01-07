@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/raidcraft/skills-and-effects/compare/v1.5.2...v1.5.3) (2021-01-07)
+
+
+### Bug Fixes
+
+* **mcmmo-exp:** floating point precision is lost for low exp values ([dcca819](https://github.com/raidcraft/skills-and-effects/commit/dcca81965a749c595794e957f91e0827328e3400)), closes [#8](https://github.com/raidcraft/skills-and-effects/issues/8)
+
 ## [1.5.2](https://github.com/raidcraft/skills-and-effects/compare/v1.5.1...v1.5.2) (2021-01-06)
 
 
