@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/raidcraft/skills-and-effects/compare/v1.5.3...v1.6.0) (2021-01-07)
+
+
+### Features
+
+* **mc-exp-boost:** implement minecraft exp booster ([bcb67fa](https://github.com/raidcraft/skills-and-effects/commit/bcb67fa848220f4b445fd9498d65f8461e6a60ee))
+
 ## [1.5.3](https://github.com/raidcraft/skills-and-effects/compare/v1.5.2...v1.5.3) (2021-01-07)
 
 
