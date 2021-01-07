@@ -18,6 +18,7 @@ Alle Skills befinden sich im [modules](modules) Ordner und haben dort eine Besch
 - [online-time-exp](modules/online-time-exp): *Gibt dem Spieler RC-EXP für die Zeit die er aktiv spielt.*
 - [server-shop-exp](modules/server-shop-exp): *Der Spieler erhält EXP für Gegenstände die er an den Server Shop verkauft.*
 - [friendly-mobs](modules/friendly-mobs): *Feindliche Mobs greifen den Spieler nicht mehr grundlos an*
+- [mc-exp-boost](modules/mc-exp-boost): *Erhöht die erhaltenen Minecraft EXP des Spielers.*
 
 ## Skill Development
 
