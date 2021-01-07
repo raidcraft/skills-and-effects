@@ -19,9 +19,6 @@ Alle Skills befinden sich im [modules](modules) Ordner und haben dort eine Besch
 - [server-shop-exp](modules/server-shop-exp): *Der Spieler erhält EXP für Gegenstände die er an den Server Shop verkauft.*
 - [friendly-mobs](modules/friendly-mobs): *Feindliche Mobs greifen den Spieler nicht mehr grundlos an*
 
-## Skill Programmieren
+## Skill Development
 
-Um einen neuen Skill oder Effekt hinzuzufügen einfach analog der anderen Klassen hinzufügen. Die Klasse wird dann automatisch vom [RCSkills](https://github.com/raidcraft/rcskills) Plugin erkannt.
-
-> **WICHTIG**: Nicht die `@SkillInfo` oder `@EffectInfo` annotation vergessen, sonst kann die Klasse nicht registriert werden.
-> Außerdem muss `@ConfigOption` aus dem `de.raidcraft.skills.configmapper.*` package stammen nicht aus `net.silthus.*`.
+There is a [quickstart template](modules/template) to get you started with developing new skills. Simply copy and paste it and then follow the steps in the template description.
