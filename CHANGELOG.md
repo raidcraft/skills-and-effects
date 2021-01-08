@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/raidcraft/skills-and-effects/compare/v1.12.0...v1.12.1) (2021-01-08)
+
+
+### Bug Fixes
+
+* **movement-speed:** in water check working ([721eec8](https://github.com/raidcraft/skills-and-effects/commit/721eec8fd3cfb52fdb1548722c7f587159d9ba0a))
+
 # [1.12.0](https://github.com/raidcraft/skills-and-effects/compare/v1.11.0...v1.12.0) (2021-01-08)
 
 
