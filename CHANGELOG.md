@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/raidcraft/skills-and-effects/compare/v1.8.0...v1.9.0) (2021-01-08)
+
+
+### Features
+
+* implement defense-bonus ([95ba748](https://github.com/raidcraft/skills-and-effects/commit/95ba74832c497b0bce9b26286ed2a57f54c8fec1))
+
 # [1.8.0](https://github.com/raidcraft/skills-and-effects/compare/v1.7.0...v1.8.0) (2021-01-07)
 
 
