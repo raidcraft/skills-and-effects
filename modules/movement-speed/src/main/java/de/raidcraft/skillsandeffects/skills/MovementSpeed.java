@@ -95,7 +95,7 @@ public class MovementSpeed extends AbstractSkill implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onMove(PlayerMoveEvent event) {
 
-        if (context().notApplicable(event.getPlayer())) return;
+        if (notApplicable(event.getPlayer())) return;
 
         if (!hasMoved(event.getTo())) {
             return;
@@ -147,14 +147,14 @@ public class MovementSpeed extends AbstractSkill implements Listener {
         oldState = state;
         if (player.isFlying()) {
             state = State.FLYING;
-        } else if (player.isInWater()) {
-            state = State.IN_WATER;
         } else if (player.isSprinting()) {
             state = State.SPRINTING;
         } else if (player.isGliding()) {
             state = State.GLIDING;
         } else if (player.isSneaking()) {
             state = State.SNEAKING;
+        } else if (!player.getEyeLocation().getBlock().getType().isSolid()) {
+            state = State.IN_WATER;
         } else {
             state = State.WALKING;
         }
