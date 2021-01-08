@@ -67,7 +67,7 @@ configure (subprojects - project(':modules')) {
     dependencies {
         implementation "org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT"
 
-        implementation 'de.raidcraft:rcskills:1.16.0'
+        implementation 'de.raidcraft:rcskills:1.19.0'
 
         testImplementation 'de.raidcraft:rcskills-test:2.0.0'
 
