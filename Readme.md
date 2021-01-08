@@ -23,6 +23,7 @@ Alle Skills befinden sich im [modules](modules) Ordner und haben dort eine Besch
 - [defense-bonus](modules/defense-bonus): *Verringert den erlittenen Schaden des Spielers.*
 - [rebirth](modules/rebirth): *Verhindert tödlichen Schaden und heilt den Spieler.*
 - [keep-inventory](modules/keep-inventory): *Der Spieler hat eine Chance sein Inventar beim Tod zu behalten.*
+- [no-pvp](modules/no-pvp): *Verhindert PvP von und mit dem Spieler der den Skill hat.*
 
 ## Skill Development
 
