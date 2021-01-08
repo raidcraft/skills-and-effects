@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/raidcraft/skills-and-effects/compare/v1.10.0...v1.11.0) (2021-01-08)
+
+
+### Features
+
+* **keep-inventory:** add keep-inventory skill ([6161caf](https://github.com/raidcraft/skills-and-effects/commit/6161caf56e9b1e80c14cf4bbf3e2dbf071891dae))
+
 # [1.10.0](https://github.com/raidcraft/skills-and-effects/compare/v1.9.0...v1.10.0) (2021-01-08)
 
 
