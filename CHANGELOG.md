@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/raidcraft/skills-and-effects/compare/v1.11.0...v1.12.0) (2021-01-08)
+
+
+### Features
+
+* **no-pvp:** add no-pvp skill ([f909b03](https://github.com/raidcraft/skills-and-effects/commit/f909b034a7f368c276f56fec854ac726d29c2723))
+
 # [1.11.0](https://github.com/raidcraft/skills-and-effects/compare/v1.10.0...v1.11.0) (2021-01-08)
 
 
