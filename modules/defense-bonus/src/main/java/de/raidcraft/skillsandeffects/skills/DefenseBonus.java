@@ -7,6 +7,8 @@ import de.raidcraft.skills.SkillInfo;
 import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -38,6 +40,9 @@ public class DefenseBonus extends AbstractSkill implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onDamage(EntityDamageEvent event) {
+
+        if (!(event.getEntity() instanceof Player)) return;
+        if (notApplicable((OfflinePlayer) event.getEntity())) return;
 
         event.setDamage(event.getDamage() * modifier);
     }
