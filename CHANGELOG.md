@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/raidcraft/skills-and-effects/compare/v1.9.0...v1.10.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* **defense-bonus:** filter out non-players and non skill users ([50ab9d5](https://github.com/raidcraft/skills-and-effects/commit/50ab9d56f070d73de8238e8b911964466ff70ba9))
+
+
+### Features
+
+* **rebirth:** add rebirth skill ([f931dd4](https://github.com/raidcraft/skills-and-effects/commit/f931dd4ab5c83eb4a5b3e96b6d82e51f5bc9b299))
+
 # [1.9.0](https://github.com/raidcraft/skills-and-effects/compare/v1.8.0...v1.9.0) (2021-01-08)
 
 
