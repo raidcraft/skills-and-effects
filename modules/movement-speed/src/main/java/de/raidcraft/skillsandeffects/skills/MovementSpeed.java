@@ -8,6 +8,7 @@ import de.raidcraft.skills.SkillInfo;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -82,7 +83,7 @@ public class MovementSpeed extends AbstractSkill implements Listener {
 
         context().player().ifPresent(player -> {
             updateState(player);
-            addSpeed(player);
+            updateMovementSpeed(player);
         });
     }
 
@@ -145,7 +146,10 @@ public class MovementSpeed extends AbstractSkill implements Listener {
     private void updateState(Player player) {
 
         oldState = state;
-        if (player.isFlying()) {
+        if (player.getLocation().getBlock().getType() == Material.WATER
+                || player.getEyeLocation().getBlock().getType() == Material.WATER) {
+            state = State.IN_WATER;
+        } else if (player.isFlying()) {
             state = State.FLYING;
         } else if (player.isSprinting()) {
             state = State.SPRINTING;
@@ -153,8 +157,6 @@ public class MovementSpeed extends AbstractSkill implements Listener {
             state = State.GLIDING;
         } else if (player.isSneaking()) {
             state = State.SNEAKING;
-        } else if (!player.getEyeLocation().getBlock().getType().isSolid()) {
-            state = State.IN_WATER;
         } else {
             state = State.WALKING;
         }
