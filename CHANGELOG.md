@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/raidcraft/skills-and-effects/compare/v1.12.1...v1.12.2) (2021-01-09)
+
+
+### Bug Fixes
+
+* **aquaman:** player receives movement speed buff outside of water ([4951e02](https://github.com/raidcraft/skills-and-effects/commit/4951e029038492c53096909e717466aa622688f7)), closes [#9](https://github.com/raidcraft/skills-and-effects/issues/9)
+
 ## [1.12.1](https://github.com/raidcraft/skills-and-effects/compare/v1.12.0...v1.12.1) (2021-01-08)
 
 
