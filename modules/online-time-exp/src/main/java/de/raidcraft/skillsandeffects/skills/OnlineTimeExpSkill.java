@@ -58,7 +58,7 @@ public class OnlineTimeExpSkill extends AbstractSkill implements Periodic {
     long lastPayOut;
     Essentials essentials;
 
-    OnlineTimeExpSkill(SkillContext context) {
+    protected OnlineTimeExpSkill(SkillContext context) {
         super(context);
     }
 

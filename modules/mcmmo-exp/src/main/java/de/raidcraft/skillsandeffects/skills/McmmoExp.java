@@ -103,10 +103,10 @@ public class McmmoExp extends AbstractSkill implements Listener {
     public void apply() {
 
         lastHourStart = Instant.ofEpochMilli(context().store().get(LAST_HOUR_START, long.class, Instant.now().toEpochMilli()));
-        totalGainedExp = context().store().get(TOTAL_EXP_GAIN, float.class, 0f);
-        lastHourGainedExp = context().store().get(LAST_HOUR_EXP_GAIN, float.class, 0f);
-        lastHourMcmmoExp = context().store().get(LAST_HOUR_MCMMO_EXP_GAIN, float.class, 0f);
-        totalMcmmoExp = context().store().get(TOTAL_MCMMO_EXP, float.class, 0f);
+        totalGainedExp = context().store().get(TOTAL_EXP_GAIN, Number.class, 0f).floatValue();
+        lastHourGainedExp = context().store().get(LAST_HOUR_EXP_GAIN, Number.class, 0f).floatValue();
+        lastHourMcmmoExp = context().store().get(LAST_HOUR_MCMMO_EXP_GAIN, Number.class, 0f).floatValue();
+        totalMcmmoExp = context().store().get(TOTAL_MCMMO_EXP, Number.class, 0f).floatValue();
     }
 
     @Override
