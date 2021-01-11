@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/raidcraft/skills-and-effects/compare/v1.12.2...v1.12.3) (2021-01-11)
+
+
+### Bug Fixes
+
+* **mcmmo-exp:** bigdecimal cannot be cast to float ([2bb7837](https://github.com/raidcraft/skills-and-effects/commit/2bb7837ad57950bb4e806b87e71124d127c21a9e)), closes [#11](https://github.com/raidcraft/skills-and-effects/issues/11)
+
 ## [1.12.2](https://github.com/raidcraft/skills-and-effects/compare/v1.12.1...v1.12.2) (2021-01-09)
 
 
