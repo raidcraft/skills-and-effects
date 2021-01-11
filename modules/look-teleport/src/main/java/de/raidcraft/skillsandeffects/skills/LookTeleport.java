@@ -5,6 +5,7 @@ import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -100,15 +101,23 @@ public class LookTeleport extends AbstractSkill implements Executable {
             return context.failure("Deine Sicht ist blockiert oder das Ziel ist zu klein für dich.");
         }
 
-        Block target = lineOfSight.get(lineOfSight.size() - 1);
-        player.teleport(target.getLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
-        if (playEffect) {
-            player.playEffect(target.getLocation(), effectEffect, null);
-        }
-        if (playSound) {
-            player.playSound(target.getLocation(), soundEffect, SoundCategory.MASTER, 10f, 1f);
+        for (int i = lineOfSight.size() - 1; i >= 0; i--) {
+            Block block = lineOfSight.get(i);
+            Location target = block.getLocation().add(0, 1, 0);
+            if (target.getBlock().getType() == Material.AIR && target.getBlock().getRelative(BlockFace.UP).getType() == Material.AIR) {
+                // location is safe to teleport
+                player.teleport(target, PlayerTeleportEvent.TeleportCause.PLUGIN);
+                if (playEffect) {
+                    player.playEffect(target, effectEffect, null);
+                }
+                if (playSound) {
+                    player.playSound(target, soundEffect, SoundCategory.MASTER, 10f, 1f);
+                }
+                return context.success();
+            }
         }
 
-        return context.success();
+
+        return context.failure("Es wurde kein sicheres Ziel für den Teleport gefunden.");
     }
 }
