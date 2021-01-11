@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/raidcraft/skills-and-effects/compare/v1.12.3...v1.12.4) (2021-01-11)
+
+
+### Bug Fixes
+
+* **look-teleport:** teleport player to safe locations only ([6aed202](https://github.com/raidcraft/skills-and-effects/commit/6aed202fb79fc4830ce1f3bca0b353442b09a897)), closes [#10](https://github.com/raidcraft/skills-and-effects/issues/10)
+
 ## [1.12.3](https://github.com/raidcraft/skills-and-effects/compare/v1.12.2...v1.12.3) (2021-01-11)
 
 
