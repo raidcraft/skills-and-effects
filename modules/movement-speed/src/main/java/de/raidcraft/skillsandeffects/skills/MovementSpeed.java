@@ -123,6 +123,7 @@ public class MovementSpeed extends AbstractSkill implements Listener {
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         if (attribute == null) return;
         if (!applied) {
+            attribute.removeModifier(attributeModifier);
             attribute.addModifier(attributeModifier);
             applied = true;
         }
