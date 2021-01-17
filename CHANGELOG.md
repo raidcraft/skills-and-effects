@@ -1,3 +1,10 @@
+## [1.12.7](https://github.com/raidcraft/skills-and-effects/compare/v1.12.6...v1.12.7) (2021-01-17)
+
+
+### Bug Fixes
+
+* **rebirth:** add a list of ignored damage causes ([d8aaac6](https://github.com/raidcraft/skills-and-effects/commit/d8aaac673008b4c65625c35fdada5c111019047c)), closes [#15](https://github.com/raidcraft/skills-and-effects/issues/15)
+
 ## [1.12.6](https://github.com/raidcraft/skills-and-effects/compare/v1.12.5...v1.12.6) (2021-01-17)
 
 
