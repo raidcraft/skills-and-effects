@@ -1,3 +1,10 @@
+## [1.12.6](https://github.com/raidcraft/skills-and-effects/compare/v1.12.5...v1.12.6) (2021-01-17)
+
+
+### Bug Fixes
+
+* **movement-speed:** iterate and remove existing attribute modifiers before applying ([61bd0fd](https://github.com/raidcraft/skills-and-effects/commit/61bd0fd0edc6f2b72d1dee671419f9540a08a092)), closes [#14](https://github.com/raidcraft/skills-and-effects/issues/14)
+
 ## [1.12.5](https://github.com/raidcraft/skills-and-effects/compare/v1.12.4...v1.12.5) (2021-01-15)
 
 
