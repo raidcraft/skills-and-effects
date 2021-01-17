@@ -1,11 +1,7 @@
 package de.raidcraft.skillsandeffects.skills;
 
 import com.google.common.base.Strings;
-import de.raidcraft.skills.AbstractSkill;
-import de.raidcraft.skills.Messages;
-import de.raidcraft.skills.SkillContext;
-import de.raidcraft.skills.SkillFactory;
-import de.raidcraft.skills.SkillInfo;
+import de.raidcraft.skills.*;
 import de.raidcraft.skills.configmapper.ConfigOption;
 import de.raidcraft.skills.text.text.format.NamedTextColor;
 import de.raidcraft.skills.util.PseudoRandomGenerator;
@@ -22,6 +18,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static de.raidcraft.skills.text.text.Component.text;
 
@@ -49,6 +48,7 @@ public class Rebirth extends AbstractSkill implements Listener {
     double heal = 20;
     @ConfigOption
     boolean healInPercent = false;
+    private Set<EntityDamageEvent.DamageCause> ignoredCauses = new HashSet<>();
 
     private PseudoRandomGenerator random;
 
@@ -60,12 +60,28 @@ public class Rebirth extends AbstractSkill implements Listener {
     public void load(ConfigurationSection config) {
 
         this.random = PseudoRandomGenerator.create((float) config.getDouble("chance", 0.1));
+        List<String> stringList = config.getStringList("ignored-causes");
+        if (stringList.isEmpty()) {
+            ignoredCauses.add(EntityDamageEvent.DamageCause.VOID);
+            ignoredCauses.add(EntityDamageEvent.DamageCause.SUFFOCATION);
+            ignoredCauses.add(EntityDamageEvent.DamageCause.SUICIDE);
+            ignoredCauses.add(EntityDamageEvent.DamageCause.CUSTOM);
+        } else {
+            for (String cause : stringList) {
+                try {
+                    ignoredCauses.add(EntityDamageEvent.DamageCause.valueOf(cause.toUpperCase()));
+                } catch (IllegalArgumentException e) {
+                    log.severe("invalid ignored damage cause " + cause + " in config of " + alias() + " (" + id() + ")");
+                }
+            }
+        }
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onDamage(EntityDamageEvent event) {
 
         if (!(event.getEntity() instanceof Player)) return;
+        if (ignoredCauses.contains(event.getCause())) return;
         if (notApplicable((OfflinePlayer) event.getEntity())) return;
 
         Player player = (Player) event.getEntity();
