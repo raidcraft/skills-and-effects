@@ -44,7 +44,6 @@ public class MovementSpeed extends AbstractSkill implements Listener {
     private Location lastLocation;
     private State state;
     private State oldState;
-    private boolean applied;
 
     private final List<State> states = new ArrayList<>();
 
@@ -71,8 +70,8 @@ public class MovementSpeed extends AbstractSkill implements Listener {
         }
 
         attributeModifier = new AttributeModifier(
-                context().configuredSkill().id(),
-                context().configuredSkill().alias(),
+                id(),
+                alias(),
                 config.getDouble("modifier", 0.1),
                 AttributeModifier.Operation.valueOf(config.getString("operation", AttributeModifier.Operation.MULTIPLY_SCALAR_1.name()))
         );
@@ -122,21 +121,17 @@ public class MovementSpeed extends AbstractSkill implements Listener {
 
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         if (attribute == null) return;
-        if (!applied) {
-            attribute.removeModifier(attributeModifier);
-            attribute.addModifier(attributeModifier);
-            applied = true;
-        }
+        attribute.getModifiers().stream()
+                .filter(modifier -> modifier.getUniqueId().equals(attributeModifier.getUniqueId()))
+                .forEach(attribute::removeModifier);
+        attribute.addModifier(attributeModifier);
     }
 
     private void removeSpeed(Player player) {
 
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         if (attribute == null) return;
-        if (applied) {
-            attribute.removeModifier(attributeModifier);
-            applied = false;
-        }
+        attribute.removeModifier(attributeModifier);
     }
 
     private boolean stateChanged() {
