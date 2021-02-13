@@ -95,11 +95,11 @@ public class MovementSpeed extends AbstractSkill implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onMove(PlayerMoveEvent event) {
 
-        if (notApplicable(event.getPlayer())) return;
-
         if (!hasMoved(event.getTo())) {
             return;
         }
+        if (notApplicable(event.getPlayer())) return;
+
         lastLocation = event.getTo();
         updateState(event.getPlayer());
 
