@@ -1,11 +1,6 @@
 package de.raidcraft.skillsandeffects.skills;
 
-import de.raidcraft.skills.AbstractSkill;
-import de.raidcraft.skills.Messages;
-import de.raidcraft.skills.SkillContext;
-import de.raidcraft.skills.SkillFactory;
-import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
+import de.raidcraft.skills.*;
 import de.raidcraft.skills.text.text.Component;
 import de.raidcraft.skills.util.TimeUtil;
 import lombok.NonNull;
@@ -45,9 +40,7 @@ public class NoPvp extends AbstractSkill implements Listener {
     private final Map<UUID, Instant> lastMessages = new HashMap<>();
     private Instant lastAttack = Instant.now();
 
-    @ConfigOption
     String attackerMessage = "Du kannst {player} nicht angreifen der er den Skill \"{skill}\" hat, welcher PvP verhindert.";
-    @ConfigOption
     String message = "Du kannst {player} nicht angreifen da der Skill \"{skill}\" PvP verhindert.";
     long messageCooldown;
 
@@ -58,7 +51,9 @@ public class NoPvp extends AbstractSkill implements Listener {
     @Override
     public void load(ConfigurationSection config) {
 
-        TimeUtil.parseTimeAsTicks(config.getString("message_cooldown", "10s"));
+        attackerMessage = config.getString("attacker_message", attackerMessage);
+        message = config.getString("message", message);
+        messageCooldown = TimeUtil.parseTimeAsTicks(config.getString("message_cooldown", "10s"));
     }
 
     @EventHandler(ignoreCancelled = true)

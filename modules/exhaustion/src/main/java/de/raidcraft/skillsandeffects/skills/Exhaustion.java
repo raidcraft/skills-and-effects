@@ -1,13 +1,9 @@
 package de.raidcraft.skillsandeffects.skills;
 
-import de.raidcraft.skills.AbstractSkill;
-import de.raidcraft.skills.Periodic;
-import de.raidcraft.skills.SkillContext;
-import de.raidcraft.skills.SkillFactory;
-import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
+import de.raidcraft.skills.*;
 import lombok.NonNull;
 import lombok.extern.java.Log;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Listener;
 
 @Log(topic = "RCSkills:exhaustion")
@@ -42,12 +38,17 @@ public class Exhaustion extends AbstractSkill implements Listener, Periodic {
     // this means we need to keep track of the difference in exhaustion levels and adjust the changes based on our modifier
     // the best is if we do this every tick, which means we need to take high care of performance
 
-    @ConfigOption
     float modifier = 0.9f;
     float lastExhaustionLevel = 0f;
 
     protected Exhaustion(SkillContext context) {
         super(context);
+    }
+
+    @Override
+    public void load(ConfigurationSection config) {
+
+        this.modifier = (float) config.getDouble("modifier", 0.9);
     }
 
     @Override

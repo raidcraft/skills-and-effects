@@ -1,21 +1,19 @@
 package de.raidcraft.skillsandeffects.skills;
 
 import de.raidcraft.skills.*;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.SoundCategory;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Log(topic = "RCSkills:look-teleport")
@@ -36,15 +34,11 @@ public class LookTeleport extends AbstractSkill implements Executable {
 
     }
 
-    @ConfigOption
     boolean playSound = true;
-    @ConfigOption
     String sound = Sound.ENTITY_ENDERMAN_TELEPORT.name();
     private Sound soundEffect = Sound.ENTITY_ENDERMAN_TELEPORT;
-    @ConfigOption
     boolean playEffect = true;
     Effect effectEffect = Effect.PORTAL_TRAVEL;
-    @ConfigOption
     String effect = Effect.PORTAL_TRAVEL.name();
 
     Set<Material> transparentBlocks = new HashSet<>();
@@ -56,16 +50,18 @@ public class LookTeleport extends AbstractSkill implements Executable {
     @Override
     public void load(ConfigurationSection config) {
 
+        playSound = config.getBoolean("play_sound", playSound);
         try {
-            soundEffect = Sound.valueOf(sound);
+            soundEffect = Sound.valueOf(config.getString("sound", sound));
         } catch (IllegalArgumentException e) {
-            log.warning("unknown sound effect " + sound + " in skill config " + context().configuredSkill().alias());
+            log.warning("unknown sound effect " + sound + " in skill config " + alias());
         }
 
+        this.playEffect = config.getBoolean("play_effect", playEffect);
         try {
-            effectEffect = Effect.valueOf(effect);
+            effectEffect = Effect.valueOf(config.getString("effect", effect));
         } catch (IllegalArgumentException e) {
-            log.warning("unknown effect " + effect + " in skill config " + context().configuredSkill().alias());
+            log.warning("unknown effect " + effect + " in skill config " + alias());
         }
 
         transparentBlocks.clear();
@@ -78,7 +74,7 @@ public class LookTeleport extends AbstractSkill implements Executable {
             for (String block : list) {
                 Material material = Material.matchMaterial(block);
                 if (material == null) {
-                    log.warning("the material " + block + " is not valid in the skill config of: " + context().configuredSkill().alias());
+                    log.warning("the material " + block + " is not valid in the skill config of: " + alias());
                 } else {
                     transparentBlocks.add(material);
                 }

@@ -7,7 +7,6 @@ import de.raidcraft.skills.AbstractSkill;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.configuration.ConfigurationSection;
@@ -42,19 +41,12 @@ public class McmmoExp extends AbstractSkill implements Listener {
         }
     }
 
-    @ConfigOption
     String reason = "mcMMO EXP";
-    @ConfigOption
     int base = 0;
-    @ConfigOption
     double factor = 0;
-    @ConfigOption
     int min = 0;
-    @ConfigOption
     int max = -1;
-    @ConfigOption
     int maxPerHour = -1;
-    @ConfigOption
     long payoutTreshhold = 0;
     Set<XPGainReason> reasons = new HashSet<>();
     Set<PrimarySkillType> skills = new HashSet<>();
@@ -72,6 +64,13 @@ public class McmmoExp extends AbstractSkill implements Listener {
     @Override
     public void load(ConfigurationSection config) {
 
+        this.reason = config.getString("reason", reason);
+        this.base = config.getInt("base", base);
+        this.factor = config.getDouble("factor", factor);
+        this.min = config.getInt("min", min);
+        this.max = config.getInt("max", max);
+        this.maxPerHour = config.getInt("max_per_hour", maxPerHour);
+        this.payoutTreshhold = config.getLong("payout_treshhold", payoutTreshhold);
         if (config.isSet("reasons")) {
             for (String key : config.getStringList("reasons")) {
                 XPGainReason reason = XPGainReason.getXPGainReason(key);

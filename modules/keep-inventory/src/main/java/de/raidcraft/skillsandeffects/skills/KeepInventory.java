@@ -2,17 +2,14 @@ package de.raidcraft.skillsandeffects.skills;
 
 import com.google.common.base.Strings;
 import de.raidcraft.skills.AbstractSkill;
-import de.raidcraft.skills.Messages;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
-import de.raidcraft.skills.text.text.Component;
-import de.raidcraft.skills.text.text.format.NamedTextColor;
 import de.raidcraft.skills.util.PseudoRandomGenerator;
 import de.raidcraft.skills.util.TimeUtil;
 import lombok.NonNull;
 import lombok.extern.java.Log;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,11 +36,8 @@ public class KeepInventory extends AbstractSkill implements Listener {
         }
     }
 
-    @ConfigOption
     String message = "Der Skill {skill} hat verhindert dass du dein Inventar verlierst. Cooldown: {cooldown}.";
-    @ConfigOption
     boolean keepInventory = true;
-    @ConfigOption
     boolean keepLevel = false;
     private PseudoRandomGenerator random;
 
@@ -54,6 +48,9 @@ public class KeepInventory extends AbstractSkill implements Listener {
     @Override
     public void load(ConfigurationSection config) {
 
+        message = config.getString("message", message);
+        keepInventory = config.getBoolean("keep_inventory", keepInventory);
+        keepLevel = config.getBoolean("keep_level", keepLevel);
         random = PseudoRandomGenerator.create((float) config.getDouble("chance", 0.1));
     }
 
@@ -69,10 +66,10 @@ public class KeepInventory extends AbstractSkill implements Listener {
             lastUsed(Instant.now());
 
             if (!Strings.isNullOrEmpty(message)) {
-                message = message.replace("{skill}", context().configuredSkill().name())
+                message = message.replace("{skill}", name())
                         .replace("{cooldown}", TimeUtil.formatTime(getRemainingCooldown()))
-                        .replace("{alias}", context().configuredSkill().alias());
-                Messages.send(event.getEntity(), Component.text(message, NamedTextColor.GREEN));
+                        .replace("{alias}", alias());
+                event.getEntity().sendMessage(ChatColor.GREEN + message);
             }
         }
     }

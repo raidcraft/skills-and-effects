@@ -4,7 +4,6 @@ import de.raidcraft.skills.AbstractSkill;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.attribute.Attribute;
@@ -36,7 +35,6 @@ public class MaxHealth extends AbstractSkill {
         super(context);
     }
 
-    @ConfigOption
     int base = 20;
 
     private AttributeModifier attributeModifier;
@@ -44,9 +42,10 @@ public class MaxHealth extends AbstractSkill {
     @Override
     public void load(ConfigurationSection config) {
 
+        this.base = config.getInt("base", base);
         attributeModifier = new AttributeModifier(
-                context().configuredSkill().id(),
-                context().configuredSkill().alias(),
+                id(),
+                alias(),
                 config.getDouble("modifier", 0.0),
                 AttributeModifier.Operation.valueOf(config.getString("operation", AttributeModifier.Operation.MULTIPLY_SCALAR_1.name()))
         );

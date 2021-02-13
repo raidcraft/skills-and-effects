@@ -4,9 +4,9 @@ import de.raidcraft.skills.AbstractSkill;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -34,8 +34,13 @@ public class MinecraftExpBoost extends AbstractSkill implements Listener {
         super(context);
     }
 
-    @ConfigOption
     float factor = 1.1f;
+
+    @Override
+    public void load(ConfigurationSection config) {
+
+        this.factor = (float) config.getDouble("factor", factor);
+    }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onExpGain(PlayerExpChangeEvent event) {

@@ -1,7 +1,9 @@
 package de.raidcraft.skillsandeffects.skills;
 
-import de.raidcraft.skills.*;
-import de.raidcraft.skills.configmapper.ConfigOption;
+import de.raidcraft.skills.AbstractSkill;
+import de.raidcraft.skills.SkillContext;
+import de.raidcraft.skills.SkillFactory;
+import de.raidcraft.skills.SkillInfo;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.configuration.ConfigurationSection;
@@ -14,7 +16,8 @@ import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Log(topic = "RCSkills:friendly-mobs")
 @SkillInfo(value = "friendly-mobs")
@@ -38,7 +41,6 @@ public class FriendlyMobs extends AbstractSkill implements Listener {
     private Instant lastAttack = Instant.MIN;
 
     // Time after attacked mob will stop re-targeting player
-    @ConfigOption
     private long timeout = 10;
     List<EntityType> mobs = new ArrayList<>();
 
@@ -49,6 +51,8 @@ public class FriendlyMobs extends AbstractSkill implements Listener {
     @Override
     public void load(ConfigurationSection config) {
 
+        this.timeout = config.getLong("timeout", 10);
+
         mobs.clear();
         List<String> configuredMobs = config.getStringList("mobs");
         for (String name : configuredMobs) {
@@ -56,7 +60,7 @@ public class FriendlyMobs extends AbstractSkill implements Listener {
                 EntityType mob = EntityType.valueOf(name);
                 this.mobs.add(mob);
             } catch(IllegalArgumentException e) {
-                log.warning("invalid mobs type \"" + name + "\" in skill config " + context().configuredSkill().alias());
+                log.warning("invalid mobs type \"" + name + "\" in skill config " + alias());
             }
         }
     }
@@ -77,7 +81,6 @@ public class FriendlyMobs extends AbstractSkill implements Listener {
 
         // Check if player attacked within timeout
         if(Instant.now().isBefore(lastAttack.plus(timeout, ChronoUnit.SECONDS))) {
-            SkillsPlugin.instance().getLogger().info("[Debug] Within Timeout: ");
             return;
         }
 

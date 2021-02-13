@@ -5,7 +5,6 @@ import de.raidcraft.skills.AbstractSkill;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.Material;
@@ -33,9 +32,7 @@ public class ServerShopExp extends AbstractSkill implements Listener {
         }
     }
 
-    @ConfigOption
     String reason = "EXP für Item Verkauf";
-    @ConfigOption
     double factor = 1.0d;
     Map<Material, Long> itemExpMap = new HashMap<>();
 
@@ -45,6 +42,9 @@ public class ServerShopExp extends AbstractSkill implements Listener {
 
     @Override
     public void load(ConfigurationSection config) {
+
+        this.reason = config.getString("reason", reason);
+        this.factor = config.getDouble("factor", factor);
 
         itemExpMap.clear();
 

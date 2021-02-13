@@ -2,7 +2,6 @@ package de.raidcraft.skillsandeffects.skills;
 
 import com.google.common.base.Strings;
 import de.raidcraft.skills.*;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import de.raidcraft.skills.text.text.format.NamedTextColor;
 import de.raidcraft.skills.util.PseudoRandomGenerator;
 import de.raidcraft.skills.util.TimeUtil;
@@ -42,11 +41,8 @@ public class Rebirth extends AbstractSkill implements Listener {
         }
     }
 
-    @ConfigOption
     String message = "Dein Skill {skill} hat tödlichen Schaden verhindert und du wurdest um {heal} Leben geheilt. Cooldown: {cooldown}";
-    @ConfigOption
     double heal = 20;
-    @ConfigOption
     boolean healInPercent = false;
     private Set<EntityDamageEvent.DamageCause> ignoredCauses = new HashSet<>();
 
@@ -59,6 +55,9 @@ public class Rebirth extends AbstractSkill implements Listener {
     @Override
     public void load(ConfigurationSection config) {
 
+        this.message = config.getString("message", message);
+        this.heal = config.getDouble("heal", heal);
+        this.healInPercent = config.getBoolean("heal_in_percent", healInPercent);
         this.random = PseudoRandomGenerator.create((float) config.getDouble("chance", 0.1));
         List<String> stringList = config.getStringList("ignored-causes");
         if (stringList.isEmpty()) {
