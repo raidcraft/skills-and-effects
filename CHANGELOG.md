@@ -1,3 +1,12 @@
+## [1.12.8](https://github.com/raidcraft/skills-and-effects/compare/v1.12.7...v1.12.8) (2021-02-13)
+
+
+### Bug Fixes
+
+* applicable check of skills not working ([901be44](https://github.com/raidcraft/skills-and-effects/commit/901be44ccefe9451ec68292be409cff77b06eac6)), closes [#29](https://github.com/raidcraft/skills-and-effects/issues/29)
+* remove old @ConfigOption statements ([d0d67b5](https://github.com/raidcraft/skills-and-effects/commit/d0d67b5c9e0206e26f46ed6343c9ff2fa9ee5053))
+* remove unused configoption shade ([7d60e46](https://github.com/raidcraft/skills-and-effects/commit/7d60e466b12f7d254462b3527bacafc1d2e5612c))
+
 ## [1.12.7](https://github.com/raidcraft/skills-and-effects/compare/v1.12.6...v1.12.7) (2021-01-17)
 
 
