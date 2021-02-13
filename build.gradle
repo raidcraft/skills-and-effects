@@ -62,6 +62,9 @@ configure (subprojects - project(':modules')) {
         maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
         maven { url = "https://repo.aikar.co/content/groups/aikar/" }
         maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven {
+            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        }
     }
 
     dependencies {

@@ -4,10 +4,10 @@ import de.raidcraft.skills.AbstractSkill;
 import de.raidcraft.skills.SkillContext;
 import de.raidcraft.skills.SkillFactory;
 import de.raidcraft.skills.SkillInfo;
-import de.raidcraft.skills.configmapper.ConfigOption;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,8 +35,13 @@ public class DefenseBonus extends AbstractSkill implements Listener {
         super(context);
     }
 
-    @ConfigOption
     float modifier = 1.0f;
+
+    @Override
+    public void load(ConfigurationSection config) {
+
+        this.modifier = (float) config.getDouble("modifier", 1.0);
+    }
 
     @EventHandler(ignoreCancelled = true)
     public void onDamage(EntityDamageEvent event) {
