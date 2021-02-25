@@ -63,6 +63,8 @@ public class KeepInventory extends AbstractSkill implements Listener {
         if (random.hit()) {
             event.setKeepInventory(keepInventory);
             event.setKeepLevel(keepLevel);
+            if (keepInventory) event.getDrops().clear();
+            if (keepLevel) event.setDroppedExp(0);
             lastUsed(Instant.now());
 
             if (!Strings.isNullOrEmpty(message)) {
