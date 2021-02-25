@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/raidcraft/skills-and-effects/compare/v1.12.9...v1.13.0) (2021-02-25)
+
+
+### Features
+
+* bump version ([7d566ca](https://github.com/raidcraft/skills-and-effects/commit/7d566ca888a5e9ff931ae3dcb922e792e1240c24))
+
 ## [1.12.9](https://github.com/raidcraft/skills-and-effects/compare/v1.12.8...v1.12.9) (2021-02-25)
 
 
