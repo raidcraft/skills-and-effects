@@ -3,6 +3,14 @@
 
 ### Bug Fixes
 
+* bump release version ([fcebd1b](https://github.com/raidcraft/skills-and-effects/commit/fcebd1b67d52e6915c6b7a47b5febfb7674b121a))
+* **keep-inventory:** dropped items not cleared ([8a280f7](https://github.com/raidcraft/skills-and-effects/commit/8a280f78b7d6493f7883974c818a001f443a1497))
+
+## [1.12.9](https://github.com/raidcraft/skills-and-effects/compare/v1.12.8...v1.12.9) (2021-02-25)
+
+
+### Bug Fixes
+
 * **keep-inventory:** dropped items not cleared ([8a280f7](https://github.com/raidcraft/skills-and-effects/commit/8a280f78b7d6493f7883974c818a001f443a1497))
 
 ## [1.12.8](https://github.com/raidcraft/skills-and-effects/compare/v1.12.7...v1.12.8) (2021-02-13)
